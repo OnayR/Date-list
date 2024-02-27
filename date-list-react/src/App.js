@@ -1,7 +1,12 @@
+import { addDays, format } from 'date-fns';
 import './App.css';
 
+
 function App() {
-  const dates = [["date", "date"], ["date", "date"], ["date", "date"], ["date", "date"], ["date", "date"], ["date", "date"], ["date", "date"]];
+  let dates = [];
+  for (let i = 0; i < 14; i++) {
+    dates.push(DateTest(i));
+  }
   return (
     <>
       <div class="date-list-container">
@@ -10,22 +15,26 @@ function App() {
           {dates.map((date, index) => (
             <div class="date-item" key={index}>
               <a>
-                <p class="date-text">{date}</p>
+                <p class="day-text">{date.slice(0, 3)}</p>
+                <p class="date-text">{date.slice(4)}</p>
               </a>
             </div>
           ))}
         </div>
-      </div>
+      </div >
       <Data />
     </>
   );
 }
 
+function DateTest(e) {
+  return format(addDays(new Date(), e), 'EEE d MMM');
+}
+
 function Data() {
-  const date = Date.now();
   return (
     <div class="data-container" >
-      <p class="data-text">${date}</p>
+      <p class="data-text">a</p>
     </div >
   );
 }
