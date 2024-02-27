@@ -22,10 +22,11 @@ function App() {
 }
 
 function Data() {
+  const date = Date.now();
   return (
-    <div class="data-container">
-      <p class="data-text">Data</p>
-    </div>
+    <div class="data-container" >
+      <p class="data-text">${date}</p>
+    </div >
   );
 }
 
