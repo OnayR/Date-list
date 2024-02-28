@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import { addDays, format } from 'date-fns';
 import './App.css';
 
+// Declare all Global Variables and Arrays
 let translate = 0;
 let index = 0;
 let dates = [];
 for (let i = 0; i < 14; i++) {
-  dates.push(DateTest(i));
+  dates.push(CheckDate(i));
 }
 
+// App function and main component
 function App() {
+  // UseEffect to run the function only once *after* the first render
   useEffect(() => {
     Deactivate();
     prevNextButton();
@@ -36,11 +39,19 @@ function App() {
       <div class="secondArrow arrow" id="secondArrow">
         <h1>&gt;</h1>
       </div>
-      <Data />
+      <SelectedData />
     </>
   );
 }
 
+// Functions to handle the date slider
+function prevNextButton() {
+  let firstArrow = document.getElementById("firstArrow");
+  let secondArrow = document.getElementById("secondArrow");
+  firstArrow.addEventListener("click", prevDate);
+  secondArrow.addEventListener("click", nextDate);
+}
+// Previous Date Function
 function prevDate() {
   translate += 106;
   if (translate >= 0) {
@@ -51,7 +62,7 @@ function prevDate() {
     dateContainer.style.transform = "translateX(" + translate + "%)";
   }
 }
-
+// Next Date Function
 function nextDate() {
   translate -= 106;
   if (translate <= -848) {
@@ -63,17 +74,12 @@ function nextDate() {
   }
 }
 
-function prevNextButton() {
-  let firstArrow = document.getElementById("firstArrow");
-  let secondArrow = document.getElementById("secondArrow");
-  firstArrow.addEventListener("click", prevDate);
-  secondArrow.addEventListener("click", nextDate);
-}
-
-function DateTest(e) {
+// Function to get the date of the day and the next 13 days
+function CheckDate(e) {
   return format(addDays(new Date(), e), 'EEE d MMM');
 }
 
+// Function to handle the date selection
 function selectDate() {
   let dataText = document.getElementById("data-text");
   index = this.id.slice(10);
@@ -88,7 +94,8 @@ function selectDate() {
   dataText.innerHTML = dates[index];
 }
 
-function Data() {
+// Function to display the selected date
+function SelectedData() {
   return (
     <>
       <div class="data-container" >
@@ -101,6 +108,7 @@ function Data() {
   );
 }
 
+// Function to add event listener to the dates (because onClick doesn't work in the map function)
 function addEvent() {
   let selectedDate;
   for (let i = 0; i < 14; i++) {
@@ -115,6 +123,7 @@ function addEvent() {
   }
 }
 
+// Function to deactivate 4 random dates
 function Deactivate() {
   for (let i = 0; i < 14; i++) {
     let date = document.getElementById("date-item-" + i);
@@ -132,5 +141,5 @@ function Deactivate() {
   }
 }
 
-
+// Export the App function
 export default App;
