@@ -34,7 +34,7 @@ function DateTest(e) {
 }
 
 function selectDate() {
-  this.index = this.id.slice(10);
+  index = this.id.slice(10);
   console.log(this.index);
   Data();
 }
