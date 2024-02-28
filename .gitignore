@@ -21,3 +21,6 @@ date-list-react/build
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# node modules
+node_modules
