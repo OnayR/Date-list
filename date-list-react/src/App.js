@@ -1,7 +1,9 @@
+import React, { useEffect } from 'react';
 import { addDays, format } from 'date-fns';
 import './App.css';
 
-let dateContainer = document.getElementById("date-list");
+let translate = 0;
+
 let selectedDate = 0;
 let index = 0;
 let dates = [];
@@ -10,6 +12,10 @@ for (let i = 0; i < 14; i++) {
 }
 
 function App() {
+  useEffect(() => {
+    prevNextButton();
+    addEvent();
+  }, []);
   return (
     <>
       <div class="firstArrow arrow" id="firstArrow">
@@ -31,18 +37,31 @@ function App() {
       <div class="secondArrow arrow" id="secondArrow">
         <h1>&gt;</h1>
       </div>
-      {addEvent()}
       <Data />
     </>
   );
 }
 
 function prevDate() {
-  dateContainer.style.transform = "translateX(100% - calc(100% / 6 - 1%))";
+  translate += 106;
+  if (translate >= 0) {
+    translate = 0;
+  }
+  for (let i = 0; i < dates.length; i++) {
+    let dateContainer = document.getElementById("date-item-" + i);
+    dateContainer.style.transform = "translateX(" + translate + "%)";
+  }
 }
 
 function nextDate() {
-  dateContainer.style.transform = "translateX(100% + calc(100% / 6 - 1%))";
+  translate -= 106;
+  if (translate <= -848) {
+    translate = -848;
+  }
+  for (let i = 0; i < dates.length; i++) {
+    let dateContainer = document.getElementById("date-item-" + i);
+    dateContainer.style.transform = "translateX(" + translate + "%)";
+  }
 }
 
 function prevNextButton() {
