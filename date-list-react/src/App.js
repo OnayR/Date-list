@@ -3,8 +3,6 @@ import { addDays, format } from 'date-fns';
 import './App.css';
 
 let translate = 0;
-
-let selectedDate = 0;
 let index = 0;
 let dates = [];
 for (let i = 0; i < 14; i++) {
@@ -13,6 +11,7 @@ for (let i = 0; i < 14; i++) {
 
 function App() {
   useEffect(() => {
+    Deactivate();
     prevNextButton();
     addEvent();
   }, []);
@@ -103,9 +102,33 @@ function Data() {
 }
 
 function addEvent() {
+  let selectedDate;
   for (let i = 0; i < 14; i++) {
     selectedDate = document.getElementById("date-item-" + i);
+    if (selectedDate.classList.contains("deactived")) {
+      console.log(selectedDate);
+      selectedDate.removeEventListener("click", selectDate);
+      continue;
+    }
+    console.log(selectedDate);
     selectedDate.addEventListener("click", selectDate);
+  }
+}
+
+function Deactivate() {
+  for (let i = 0; i < 14; i++) {
+    let date = document.getElementById("date-item-" + i);
+    date.classList.remove("deactived");
+  }
+  for (let i = 0; i < 4; i++) {
+    let random = Math.floor(Math.random() * 14);
+    if (document.getElementById("date-item-" + random).classList.contains("deactived")) {
+      i--;
+      continue;
+    }
+    let date = document.getElementById("date-item-" + random);
+    date.classList.add("deactived");
+    console.log(i + "hi")
   }
 }
 
