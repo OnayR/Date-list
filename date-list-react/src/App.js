@@ -83,7 +83,6 @@ function CheckDate(e) {
 function selectDate() {
   let dataText = document.getElementById("data-text");
   index = this.id.slice(10);
-  console.log(index);
   this.classList.add("selected");
   for (let i = 0; i < 14; i++) {
     if (i != index) {
@@ -114,11 +113,9 @@ function addEvent() {
   for (let i = 0; i < 14; i++) {
     selectedDate = document.getElementById("date-item-" + i);
     if (selectedDate.classList.contains("deactived")) {
-      console.log(selectedDate);
       selectedDate.removeEventListener("click", selectDate);
       continue;
     }
-    console.log(selectedDate);
     selectedDate.addEventListener("click", selectDate);
   }
 }
@@ -137,7 +134,6 @@ function Deactivate() {
     }
     let date = document.getElementById("date-item-" + random);
     date.classList.add("deactived");
-    console.log(i + "hi")
   }
 }
 
