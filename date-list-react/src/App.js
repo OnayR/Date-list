@@ -9,8 +9,9 @@ let dates = [];
 for (let i = 0; i < 14; i++) {
   dates.push(CheckDate(i));
 }
-
-// App function and main component
+/**
+* App function and main component
+*/
 function App() {
   // UseEffect to run the function only once *after* the first render
   useEffect(() => {
@@ -48,25 +49,18 @@ function App() {
 function prevNextButton() {
   let firstArrow = document.getElementById("firstArrow");
   let secondArrow = document.getElementById("secondArrow");
-  firstArrow.addEventListener("click", prevDate);
-  secondArrow.addEventListener("click", nextDate);
+  firstArrow.addEventListener("click", nextPrevDate.bind(null, "prev"));
+  secondArrow.addEventListener("click", nextPrevDate.bind(null, "next"));
 }
 // Previous Date Function
-function prevDate() {
-  translate += 106;
-  if (translate >= 0) {
-    translate = 0;
+function nextPrevDate(button) {
+  if (button == "next") {
+    translate -= 106;
+    if (translate <= -848) translate = -848;
   }
-  for (let i = 0; i < dates.length; i++) {
-    let dateContainer = document.getElementById("date-item-" + i);
-    dateContainer.style.transform = "translateX(" + translate + "%)";
-  }
-}
-// Next Date Function
-function nextDate() {
-  translate -= 106;
-  if (translate <= -848) {
-    translate = -848;
+  else {
+    translate += 106;
+    if (translate >= 0) translate = 0;
   }
   for (let i = 0; i < dates.length; i++) {
     let dateContainer = document.getElementById("date-item-" + i);
