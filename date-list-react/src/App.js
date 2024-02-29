@@ -103,9 +103,8 @@ function SelectedData() {
 
 // Function to add event listener to the dates (because onClick doesn't work in the map function)
 function addEvent() {
-  let selectedDate;
   for (let i = 0; i < 14; i++) {
-    selectedDate = document.getElementById("date-item-" + i);
+    let selectedDate = document.getElementById("date-item-" + i);
     if (selectedDate.classList.contains("deactived")) {
       selectedDate.removeEventListener("click", selectDate);
       continue;
