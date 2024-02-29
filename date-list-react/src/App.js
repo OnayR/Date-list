@@ -105,7 +105,7 @@ function SelectedData() {
 function addEvent() {
   for (let i = 0; i < 14; i++) {
     let selectedDate = document.getElementById("date-item-" + i);
-    if (selectedDate.classList.contains("deactived")) {
+    if (selectedDate.classList.contains("deactivated")) {
       selectedDate.removeEventListener("click", selectDate);
       continue;
     }
@@ -115,18 +115,14 @@ function addEvent() {
 
 // Function to deactivate 4 random dates
 function Deactivate() {
-  for (let i = 0; i < 14; i++) {
-    let date = document.getElementById("date-item-" + i);
-    date.classList.remove("deactived");
-  }
   for (let i = 0; i < 4; i++) {
     let random = Math.floor(Math.random() * 14);
-    if (document.getElementById("date-item-" + random).classList.contains("deactived")) {
+    if (document.getElementById("date-item-" + random).classList.contains("deactivated")) {
       i--;
       continue;
     }
     let date = document.getElementById("date-item-" + random);
-    date.classList.add("deactived");
+    date.classList.add("deactivated");
   }
 }
 

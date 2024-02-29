@@ -79,8 +79,12 @@ body {
     border: 4px solid #c63174;
 }
 
-.deactived {
+.deactivated {
     border: 4px solid #ecf0f3;
+}
+
+.deactivated:hover {
+    cursor: default;
 }
 
 .date-item:last-child {
